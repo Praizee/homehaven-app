@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Image, Button, Platform } from "react-native";
 import { Link, useRouter } from "expo-router";
-import { tw } from "../../src/utils/tailwind";
+import { tw } from "@/src/utils/tailwind";
 import { StatusBar } from "expo-status-bar";
 
 const Onboarding2 = () => {
