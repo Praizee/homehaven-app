@@ -22,7 +22,9 @@ const Onboarding3 = () => {
       <View
         style={tw`flex-1 flex-col gap-6 justify-center items-center bg-white px-4`}
       >
-        <Text style={tw`text-3xl text-text font-semibold mt-4 text-center`}>
+        <Text
+          style={tw`text-3xl text-neutral-90 font-semibold mt-4 text-center`}
+        >
           Get Support From Our Skilled Team
         </Text>
         <Text style={tw`text-lg text-neutral-70 text-center mt-2`}>
