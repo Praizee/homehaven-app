@@ -1,15 +1,13 @@
 import React from "react";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import { Platform } from "react-native";
 
 // Custom component for MaterialIcons
 function MaterialTabBarIcon(props: {
   name: React.ComponentProps<typeof MaterialIcons>["name"];
   color: string;
 }) {
-  return <MaterialIcons size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <MaterialIcons size={24} style={{ marginBottom: -5 }} {...props} />;
 }
 
 // Custom component for Ionicons
@@ -17,7 +15,7 @@ function IoniconsTabBarIcon(props: {
   name: React.ComponentProps<typeof Ionicons>["name"];
   color: string;
 }) {
-  return <Ionicons size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <Ionicons size={24} style={{ marginBottom: -5 }} {...props} />;
 }
 
 export default function TabLayout() {
