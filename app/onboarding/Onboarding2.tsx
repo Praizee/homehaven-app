@@ -12,7 +12,7 @@ const Onboarding2 = () => {
       {/* Curved Image Container */}
       <View style={tw`w-full h-1/2 overflow-hidden rounded-b-[80px]`}>
         <Image
-          source={require("../../assets/images/onboarding-2.png")}
+          source={require("@/assets/images/onboarding-2.png")}
           style={tw`size-full`}
           resizeMode="cover"
         />

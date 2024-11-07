@@ -131,7 +131,7 @@ const Login = () => {
                 ]}
               >
                 <Image
-                  source={require("../../assets/images/google-icon.png")}
+                  source={require("@/assets/images/google-icon.png")}
                   style={tw`size-[16px] mr-2`}
                   resizeMode="contain"
                 />
