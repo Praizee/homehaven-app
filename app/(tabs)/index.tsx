@@ -5,8 +5,10 @@ import {
   ScrollView,
   TextInput,
   Modal,
+  ImageBackground,
+  Dimensions,
 } from "react-native";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { Text, View } from "@/components/Themed";
 import { tw } from "@/src/utils/tailwind";
@@ -21,6 +23,46 @@ export default function HomeScreen() {
   const [selectedLocation, setSelectedLocation] = useState(
     "3517 W. Gray St. Utica, Penn..."
   );
+  const [activeSlide, setActiveSlide] = useState(0);
+  const windowWidth = Dimensions.get("window").width;
+  const scrollViewRef = useRef(null);
+
+  const banners = [
+    {
+      image: require("@/assets/images/banner-1.png"),
+      title: "Celebrate The\nSeason With Us!",
+      subtitle: "Get discounts up to 75% for\nfurniture & decoration",
+      link: "/(tabs)/cart",
+      // link: "/(tabs)/new-arrivals",
+    },
+    {
+      image: require("@/assets/images/banner-2.png"),
+      title: "Summer\nCollection 2024",
+      subtitle: "Get discounts up to 50% for\nsummer items",
+      link: "/(tabs)/cart",
+    },
+    {
+      image: require("@/assets/images/banner-3.png"),
+      title: "Make Home\nYour Happy Place",
+      subtitle: "Get discount up to 67% for\nfurniture purchases",
+      link: "/(tabs)/cart",
+    },
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (scrollViewRef.current) {
+        const nextSlide = (activeSlide + 1) % banners.length;
+        (scrollViewRef.current as ScrollView).scrollTo({
+          x: nextSlide * windowWidth,
+          animated: true,
+        });
+        setActiveSlide(nextSlide);
+      }
+    }, 3000); // Change slide every 3 seconds
+
+    return () => clearInterval(timer);
+  }, [activeSlide]);
 
   return (
     <SafeAreaView style={tw`flex-1 bg-neutral-20`}>
@@ -128,24 +170,73 @@ export default function HomeScreen() {
       </Modal>
 
       <ScrollView>
-        {/* Banner Section */}
-        <View style={tw`bg-primary p-6 h-[199px]`}>
-          <Text style={tw`text-white text-3xl font-bold`}>
-            Celebrate The{"\n"}Season With Us!
-          </Text>
-          <Text style={tw`text-white mt-2`}>
-            Get discounts up to 75% for{"\n"}furniture & decoration
-          </Text>
-
-          <Pressable
-            onPress={() => router.push("/(tabs)/cart")}
-            style={({ pressed }) => [
-              tw`bg-white rounded-full px-6 py-2 mt-4 self-start`,
-              pressed && tw`opacity-50`,
-            ]}
+        {/* Banner Carousel Section */}
+        <View style={tw`bg-transparent`}>
+          <ScrollView
+            ref={scrollViewRef}
+            horizontal
+            pagingEnabled
+            showsHorizontalScrollIndicator={false}
+            onScroll={({ nativeEvent }) => {
+              const slide = Math.round(
+                nativeEvent.contentOffset.x /
+                  nativeEvent.layoutMeasurement.width
+              );
+              const normalizedSlide = slide % banners.length;
+              if (normalizedSlide !== activeSlide) {
+                setActiveSlide(normalizedSlide);
+              }
+            }}
+            scrollEventThrottle={16}
           >
-            <Text style={tw`text-primary font-semibold`}>Shop Now</Text>
-          </Pressable>
+            {[...banners, banners[0]].map((banner, index) => (
+              <ImageBackground
+                key={index}
+                source={banner.image}
+                style={[
+                  tw`p-5 h-[199px] justify-center`,
+                  { width: windowWidth },
+                ]}
+                resizeMode="cover"
+              >
+                <View style={tw`bg-transparent`}>
+                  <Text style={tw`text-white text-2xl font-bold`}>
+                    {banner.title}
+                  </Text>
+                  <Text style={tw`text-white text-xs mt-2`}>
+                    {banner.subtitle}
+                  </Text>
+
+                  <Pressable
+                    onPress={() => router.push(banner.link)}
+                    style={({ pressed }) => [
+                      tw`bg-white rounded-full px-[18px] py-2 mt-4 self-start`,
+                      pressed && tw`opacity-50`,
+                    ]}
+                  >
+                    <Text style={tw`text-primary text-xs font-bold`}>
+                      Shop Now
+                    </Text>
+                  </Pressable>
+                </View>
+              </ImageBackground>
+            ))}
+          </ScrollView>
+
+          {/* Pagination Dots */}
+          <View style={tw`flex-row justify-center gap-2 mt-2 bg-transparent`}>
+            {banners.map((_, index) => (
+              <View
+                key={index}
+                style={[
+                  tw`h-2 rounded-full`,
+                  activeSlide === index
+                    ? tw`w-4 bg-primary`
+                    : tw`w-2 bg-neutral-40`,
+                ]}
+              />
+            ))}
+          </View>
         </View>
 
         <View style={tw`p-4 pb-6 bg-transparent gap-6`}>
