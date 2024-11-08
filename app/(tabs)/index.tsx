@@ -14,49 +14,7 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
-
-const products = [
-  {
-    id: "1",
-    title: "EKERÖ",
-    price: 230.0,
-    originalPrice: 419.58,
-    rating: 4.9,
-    reviews: 256,
-    discount: 45,
-    image: require("@/assets/images/ekero.png"),
-  },
-  {
-    id: "2",
-    title: "STRANDMON",
-    price: 274.13,
-    originalPrice: 856.6,
-    rating: 4.8,
-    reviews: 128,
-    discount: 45,
-    image: require("@/assets/images/strandmon.png"),
-  },
-  {
-    id: "3",
-    title: "STRANDMON",
-    price: 24.99,
-    originalPrice: 69.99,
-    rating: 4.4,
-    reviews: 189,
-    discount: 45,
-    image: require("@/assets/images/plattlans.png"),
-  },
-  {
-    id: "4",
-    title: "STRANDMON",
-    price: 139.99,
-    originalPrice: 254.53,
-    rating: 4.3,
-    reviews: 156,
-    discount: 45,
-    image: require("@/assets/images/malm.png"),
-  },
-];
+import { products } from "@/data/products";
 
 export default function HomeScreen() {
   const [isLocationModalOpen, setIsLocationModalOpen] = useState(false);
@@ -210,9 +168,13 @@ export default function HomeScreen() {
             {/* products list */}
             <ScrollView horizontal showsHorizontalScrollIndicator={true}>
               {products.map((product) => (
-                <View
+                <Pressable
                   key={product.id}
-                  style={tw`mr-4 bg-white rounded-lg p-4 shadow-md shadow-[#0000001A] w-[152px]`}
+                  onPress={() => router.push(`/product/details`)}
+                  style={({ pressed }) => [
+                    tw`mr-4 bg-white rounded-lg p-4 shadow-md shadow-[#0000001A] w-[152px]`,
+                    pressed && tw`opacity-70`,
+                  ]}
                 >
                   <View style={tw`bg-transparent relative`}>
                     <View
@@ -251,7 +213,7 @@ export default function HomeScreen() {
                       </Text>
                     </View>
                   </View>
-                </View>
+                </Pressable>
               ))}
             </ScrollView>
           </View>
