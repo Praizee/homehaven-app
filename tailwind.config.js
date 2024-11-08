@@ -4,6 +4,10 @@ module.exports = {
       colors: {
         primary: "#156651",
         secondary: "#EBB65B",
+        "harvest-gold": "#E3AD33",
+        "eerie-black": "#1A1919",
+        flame: "#E35D33",
+        "pakistan-green": "#1C3A13",
         neutral: {
           // DEFAULT: "#6EBE44",
           20: "#F5F5F5",
