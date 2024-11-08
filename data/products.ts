@@ -21,7 +21,7 @@ export const products = [
   },
   {
     id: "3",
-    title: "STRANDMON",
+    title: "PLATTLANS",
     price: 24.99,
     originalPrice: 69.99,
     rating: 4.4,
@@ -31,7 +31,7 @@ export const products = [
   },
   {
     id: "4",
-    title: "STRANDMON",
+    title: "MALM",
     price: 139.99,
     originalPrice: 254.53,
     rating: 4.3,
