@@ -81,12 +81,12 @@ export default function HomeScreen() {
               <TextInput
                 placeholder="Search candles"
                 placeholderTextColor="#9E9E9E"
-                style={tw`flex-1 ml-2 text-neutral-90`}
+                style={tw`flex-1 h-6 mx-2 text-neutral-90`}
               />
+              <Pressable style={({ pressed }) => [pressed && tw`opacity-60`]}>
+                <Ionicons name="camera-outline" size={20} color="#404040" />
+              </Pressable>
             </View>
-            <Pressable style={({ pressed }) => [pressed && tw`opacity-60`]}>
-              <Ionicons name="camera-outline" size={20} color="#404040" />
-            </Pressable>
           </View>
           <Pressable style={({ pressed }) => [pressed && tw`opacity-60`]}>
             <FontAwesome name="bell-o" size={20} color="#404040" />
