@@ -47,7 +47,7 @@ To run this project locally, follow these steps:
    Use an emulator or a physical device to run the app.
 
 5. **Preview the app**:
-   You can view the deployed app on Expo by following this link: [Expo Preview Link](https://expo.dev/preview/update?message=premier-build&updateRuntimeVersion=1.0.0&createdAt=2024-11-08T16%3A25%3A40.031Z&slug=exp&projectId=9c988f3f-5c28-4867-bcda-332e77bf02a4&group=7a4cda7d-06c7-4570-a309-38771ce760dd)
+   You can view the deployed app on Expo by following this link: [Expo Preview Link](https://expo.dev/preview/update?message=chore%3A%20update%20packages%20and%20expo%20sdk&updateRuntimeVersion=1.0.0&createdAt=2024-12-09T16%3A13%3A16.831Z&slug=exp&projectId=9c988f3f-5c28-4867-bcda-332e77bf02a4&group=b887fa50-809f-4c19-a0f8-336b18adcc7f)
 
 ## Contact
 
